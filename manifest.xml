@@ -2,6 +2,8 @@
 <OfficeApp 
   xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" 
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0" 
+  xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides" 
   xsi:type="TaskPaneApp">
   
   <Id>45a2d812-7b1a-4c9e-9d3b-e242b21b1a3e</Id>
@@ -20,4 +22,46 @@
   </DefaultSettings>
   
   <Permissions>ReadWriteDocument</Permissions>
+
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="VersionOverridesV1_0">
+    <Hosts>
+      <Host xsi:type="Workbook">
+        <DesktopFormFactor>
+          <ExtensionPoint xsi:type="PrimaryCommandSurface">
+            <OfficeTab id="TabHome">
+              <Group id="Contoso.Group1">
+                <Label DefaultValue="Student Tools"/>
+                <Control xsi:type="Button" id="Contoso.TaskpaneButton">
+                  <Label DefaultValue="Show Form"/>
+                  <Supertip>
+                    <Title DefaultValue="Student Registry"/>
+                    <Description DefaultValue="Opens the student data entry pane."/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16"/>
+                    <bt:Image size="32" resid="Icon.32x32"/>
+                    <bt:Image size="80" resid="Icon.80x80"/>
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>MyTaskPaneID</TaskpaneId>
+                    <SourceLocation resid="Taskpane.Url"/>
+                  </Action>
+                </Control>
+              </Group>
+            </OfficeTab>
+          </ExtensionPoint>
+        </Host>
+      </Hosts>
+      <Resources>
+        <bt:Images>
+          <bt:Image id="Icon.16x16" DefaultValue="https://markhunter.github.io/excel-form/icon-16.png"/>
+          <bt:Image id="Icon.32x32" DefaultValue="https://markhunter.github.io/excel-form/icon-32.png"/>
+          <bt:Image id="Icon.80x80" DefaultValue="https://markhunter.github.io/excel-form/icon-80.png"/>
+        </bt:Images>
+        <bt:Urls>
+          <bt:Url id="Taskpane.Url" DefaultValue="https://markhunter.github.io/excel-form/index.html"/>
+        </bt:Urls>
+      </Resources>
+    </VersionOverrides>
+  </VersionOverrides>
 </OfficeApp>
