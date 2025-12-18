@@ -1,38 +1,37 @@
-let dialog; // Global variable to hold the dialog object
+let dialog;
 
 Office.onReady((info) => {
     if (info.host === Office.HostType.Excel) {
-        // Automatically open the floating form when the add-in starts
-        openFloatingForm();
+        // Automatically open the floating dialog when the add-in is opened
+        openDialog();
     }
 });
 
-function openFloatingForm() {
-    // Open the form as a floating dialog
-    // Height and Width are percentages of the screen
+function openDialog() {
+    // Opens index.html as a floating window
     Office.context.ui.displayDialogAsync(
-        'https://markhunter.github.io/excel-form/index.html', 
-        { height: 45, width: 30, displayInIframe: true }, 
+        'https://markhunter.github.io/excel-form/index.html',
+        { height: 50, width: 30, displayInIframe: true },
         (asyncResult) => {
             if (asyncResult.status === Office.AsyncResultStatus.Failed) {
-                console.error("Dialog failed: " + asyncResult.error.message);
+                console.error(asyncResult.error.message);
                 return;
             }
             dialog = asyncResult.value;
-            // Listen for messages coming BACK from the floating form
-            dialog.addEventHandler(Office.EventType.DialogMessageReceived, processFormData);
+            // Listen for the "Submit" signal from the floating window
+            dialog.addEventHandler(Office.EventType.DialogMessageReceived, processMessage);
         }
     );
 }
 
-async function processFormData(arg) {
-    // 1. Receive data from the floating window
-    const studentData = JSON.parse(arg.message);
+async function processMessage(arg) {
+    // Parse the data sent from the floating form
+    const student = JSON.parse(arg.message);
     
-    // 2. Close the floating window once data is received
+    // Close the floating window after submission
     dialog.close();
 
-    // 3. Write the data to Excel (same logic as before)
+    // Write the data to the active Excel sheet
     await Excel.run(async (context) => {
         const sheet = context.workbook.worksheets.getActiveWorksheet();
         const range = sheet.getRange("A:E").getUsedRangeOrNullObject();
@@ -41,13 +40,15 @@ async function processFormData(arg) {
 
         let nextRow = range.isNullObject ? 0 : range.rowCount;
         const newRow = sheet.getRangeByIndexes(nextRow, 0, 1, 5);
+        
         newRow.values = [[
-            studentData.fName, 
-            studentData.lName, 
-            `${studentData.fName} ${studentData.lName}`, 
-            studentData.phone, 
-            studentData.prog
+            student.fName, 
+            student.lName, 
+            student.fName + " " + student.lName, 
+            student.phone, 
+            student.prog
         ]];
+        
         await context.sync();
     });
 }
