@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<OfficeApp xmlns="http://schemas.microsoft.com/office/appshost/1.1" 
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+<OfficeApp xmlns="https://schemas.microsoft.com/office/appshost/1.1" 
+           xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" 
            xsi:type="TaskPaneApp">
   <Id>45a2d812-7b1a-4c9e-9d3b-e242b21b1a3e</Id>
   <Version>1.0.0.0</Version>
