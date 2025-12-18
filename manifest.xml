@@ -11,7 +11,7 @@
   <ProviderName>MarkHunter</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
   <DisplayName DefaultValue="Student Registry" />
-  <Description DefaultValue="Secure data entry form for student records." />
+  <Description DefaultValue="Floating data entry form for student records." />
   <IconUrl DefaultValue="https://markhunter.github.io/excel-form/icon-32.png" />
   <SupportUrl DefaultValue="https://markhunter.github.io/excel-form/" />
   
@@ -71,10 +71,10 @@
       </bt:Urls>
       <bt:ShortStrings>
         <bt:String id="GroupLabel" DefaultValue="Student Tools"/>
-        <bt:String id="ButtonLabel" DefaultValue="Show Form"/>
+        <bt:String id="ButtonLabel" DefaultValue="Open Floating Form"/>
       </bt:ShortStrings>
       <bt:LongStrings>
-        <bt:String id="TipDescription" DefaultValue="Opens the student data entry pane."/>
+        <bt:String id="TipDescription" DefaultValue="Opens the floating student data entry window."/>
       </bt:LongStrings>
     </Resources>
   </VersionOverrides>
