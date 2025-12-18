@@ -6,36 +6,30 @@
     <title>Student Data Entry</title>
     <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 20px; color: #333; }
-        .input-group { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 5px; font-weight: 600; font-size: 14px; }
-        input { width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 2px; }
+        body { font-family: 'Segoe UI', sans-serif; padding: 20px; background-color: #f4f4f4; }
+        .form-card { background: white; padding: 20px; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        label { display: block; margin-top: 10px; font-weight: bold; font-size: 12px; color: #666; }
+        input { width: 100%; padding: 8px; margin-top: 4px; border: 1px solid #ddd; border-radius: 2px; box-sizing: border-box; }
         button { 
-            width: 100%; padding: 10px; background-color: #217346; color: white; 
-            border: none; cursor: pointer; font-weight: bold; margin-top: 10px;
+            width: 100%; margin-top: 20px; padding: 10px; 
+            background-color: #217346; color: white; border: none; 
+            border-radius: 2px; cursor: pointer; font-weight: bold;
         }
         button:hover { background-color: #164d2f; }
     </style>
 </head>
 <body>
-    <div class="input-group">
+    <div class="form-card">
         <label>First Name</label>
-        <input type="text" id="firstName" placeholder="Enter first name">
-    </div>
-    <div class="input-group">
+        <input type="text" id="firstName">
         <label>Last Name</label>
-        <input type="text" id="lastName" placeholder="Enter last name">
-    </div>
-    <div class="input-group">
-        <label>Telephone</label>
-        <input type="text" id="phone" placeholder="Enter phone number">
-    </div>
-    <div class="input-group">
+        <input type="text" id="lastName">
+        <label>Phone</label>
+        <input type="text" id="phone">
         <label>Program</label>
-        <input type="text" id="program" placeholder="e.g. Computer Science">
+        <input type="text" id="program">
+        <button id="submit">Add to Excel</button>
     </div>
-    <button id="submit">Add Student</button>
-
-    <script src="script.js"></script>
+    <script src="https://markhunter.github.io/excel-form/script.js"></script>
 </body>
 </html>
