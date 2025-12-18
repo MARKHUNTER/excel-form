@@ -2,24 +2,22 @@
 <html>
 <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <title>Student Data Entry</title>
+    <title>Student Entry Form</title>
     <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; padding: 20px; background-color: #f4f4f4; }
-        .form-card { background: white; padding: 20px; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        label { display: block; margin-top: 10px; font-weight: bold; font-size: 12px; color: #666; }
-        input { width: 100%; padding: 8px; margin-top: 4px; border: 1px solid #ddd; border-radius: 2px; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; padding: 15px; background-color: #ffffff; }
+        label { display: block; margin-top: 10px; font-size: 12px; color: #333; font-weight: 600; }
+        input { width: 100%; padding: 8px; margin-top: 4px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
         button { 
             width: 100%; margin-top: 20px; padding: 10px; 
             background-color: #217346; color: white; border: none; 
-            border-radius: 2px; cursor: pointer; font-weight: bold;
+            border-radius: 4px; cursor: pointer; font-weight: bold;
         }
         button:hover { background-color: #164d2f; }
     </style>
 </head>
 <body>
-    <div class="form-card">
+    <div id="content">
         <label>First Name</label>
         <input type="text" id="firstName">
         <label>Last Name</label>
@@ -28,8 +26,25 @@
         <input type="text" id="phone">
         <label>Program</label>
         <input type="text" id="program">
-        <button id="submit">Add to Excel</button>
+        <button id="submitBtn">Submit to Excel</button>
     </div>
-    <script src="https://markhunter.github.io/excel-form/script.js"></script>
+
+    <script>
+        Office.onReady(() => {
+            document.getElementById("submitBtn").onclick = sendToExcel;
+        });
+
+        function sendToExcel() {
+            const data = {
+                fName: document.getElementById("firstName").value,
+                lName: document.getElementById("lastName").value,
+                phone: document.getElementById("phone").value,
+                prog: document.getElementById("program").value
+            };
+
+            // Send the data string back to the parent task pane
+            Office.context.ui.messageParent(JSON.stringify(data));
+        }
+    </script>
 </body>
 </html>
